@@ -1,7 +1,7 @@
 import requests
 import pyfiglet
 
-def kolomUnion(url):
+def kolomUnion():
     banner = pyfiglet.figlet_format("DETECTION")
 
     print(banner)
@@ -18,14 +18,20 @@ def kolomUnion(url):
     while True:
         union = url + pembuka + (payload * jumlahPayload) + tutup
         response = requests.get(union)
-        code = response.status_code
         jumlahPayload += 1
 
+        code = response.status_code
         jumlahKolom = (jumlahPayload)
+
+        panjang = len(response.text)
+
         print("=" * 150)
-        print(union)
+
+        print("URL: ", union)
+        print("length: ", panjang)
         print('status: ', code)
         print('Jumlah kolom: ', jumlahKolom)
+
         print("=" * 150)
 
         if code == 200:
